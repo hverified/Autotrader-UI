@@ -9,8 +9,8 @@ export default function App() {
       <Navbar />
       <div className="min-h-screen bg-gray-50">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/shortlist" element={<Shortlist />} />
+          <Route path="/" element={<Shortlist />} />
+          <Route path="/shortlist" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
