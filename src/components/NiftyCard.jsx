@@ -12,10 +12,7 @@ const NiftyCard = ({ nifty }) => {
     const range = maxValue - minValue || 1;
     const toPercent = (value) => ((value - minValue) / range) * 100;
 
-    // Stagger offsets for markers to avoid overlap
-    const markerOffsets = [-6, 0, 6]; // Current, EMA20, EMA50
-
-    // Marker definitions
+    const markerOffsets = [-10, 0, 10];
     const markers = [
         { value: current, label: "C", color: "green-600" },
         { value: ema20, label: "20", color: "yellow-600" },
@@ -26,27 +23,25 @@ const NiftyCard = ({ nifty }) => {
         <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-4 mb-5 hover:shadow-lg transition-all">
             {/* Header */}
             <div className="flex justify-between items-center mb-3">
-                <div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
                     <h2 className="text-lg font-semibold text-gray-800">{symbol}</h2>
-                    <p className="text-2xl font-bold text-gray-900">{current.toFixed(2)}</p>
-                    <p
-                        className={`text-sm font-medium ${positive ? "text-green-700" : "text-red-600"
-                            }`}
-                    >
-                        {positive ? "+" : ""}
-                        {percent_change?.toFixed(2)}%
-                    </p>
+                    <div className="flex items-baseline gap-2">
+                        <p className="text-2xl font-bold text-gray-900">{current.toFixed(2)}</p>
+                        <p
+                            className={`text-sm font-medium ${positive ? "text-green-700" : "text-red-600"}`}
+                        >
+                            {positive ? "+" : ""}
+                            {percent_change?.toFixed(2)}%
+                        </p>
+                    </div>
                 </div>
-                <Icon
-                    size={36}
-                    className={positive ? "text-green-600" : "text-red-500"}
-                />
+                <Icon size={36} className={positive ? "text-green-600" : "text-red-500"} />
             </div>
 
-            {/* Gray progress line with labeled markers */}
+            {/* Progress Line with Markers */}
             <div className="relative h-10 mb-2">
                 {/* Gray Background Line */}
-                <div className="absolute top-1/2 left-0 right-0 h-3 rounded-full bg-gray-300 -translate-y-1/2"></div>
+                <div className="absolute top-1/2 left-0 right-0 h-3 rounded-full bg-gray-200 -translate-y-1/2"></div>
 
                 {/* Markers */}
                 {markers.map((marker, index) => (
@@ -60,7 +55,7 @@ const NiftyCard = ({ nifty }) => {
                         }}
                     >
                         <div
-                            className={`w-6 h-6 sm:w-5 sm:h-5 rounded-full bg-${marker.color} border-2 border-white flex items-center justify-center text-xs font-semibold text-white`}
+                            className={`w-6 h-6 rounded-full bg-${marker.color} border-2 border-white flex items-center justify-center text-xs font-semibold text-white`}
                         >
                             {marker.label}
                         </div>
