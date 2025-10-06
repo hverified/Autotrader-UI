@@ -12,6 +12,16 @@ const NiftyCard = ({ nifty }) => {
     const range = maxValue - minValue || 1;
     const toPercent = (value) => ((value - minValue) / range) * 100;
 
+    // Stagger offsets for markers to avoid overlap
+    const markerOffsets = [-6, 0, 6]; // Current, EMA20, EMA50
+
+    // Marker definitions
+    const markers = [
+        { value: current, label: "C", color: "green-600" },
+        { value: ema20, label: "20", color: "yellow-600" },
+        { value: ema50, label: "50", color: "blue-600" },
+    ];
+
     return (
         <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-4 mb-5 hover:shadow-lg transition-all">
             {/* Header */}
@@ -33,26 +43,29 @@ const NiftyCard = ({ nifty }) => {
                 />
             </div>
 
-            {/* Gray progress line with colored markers */}
-            <div className="relative h-6 mb-2">
+            {/* Gray progress line with labeled markers */}
+            <div className="relative h-10 mb-2">
                 {/* Gray Background Line */}
-                <div className="absolute top-2 left-0 right-0 h-3 rounded-full bg-gray-300"></div>
+                <div className="absolute top-1/2 left-0 right-0 h-3 rounded-full bg-gray-300 -translate-y-1/2"></div>
 
                 {/* Markers */}
-                {[current, ema20, ema50].map((value, index) => {
-                    const colors = ["green-600", "yellow-600", "blue-600"];
-                    return (
+                {markers.map((marker, index) => (
+                    <div
+                        key={index}
+                        className="absolute flex items-center justify-center"
+                        style={{
+                            left: `${toPercent(marker.value)}%`,
+                            top: `calc(50% + ${markerOffsets[index]}px)`,
+                            transform: "translate(-50%, -50%)",
+                        }}
+                    >
                         <div
-                            key={index}
-                            className="absolute top-0"
-                            style={{ left: `${toPercent(value)}%` }}
+                            className={`w-6 h-6 sm:w-5 sm:h-5 rounded-full bg-${marker.color} border-2 border-white flex items-center justify-center text-xs font-semibold text-white`}
                         >
-                            <div
-                                className={`w-4 h-4 rounded-full bg-${colors[index]} border-2 border-white transform -translate-x-1/2`}
-                            />
+                            {marker.label}
                         </div>
-                    );
-                })}
+                    </div>
+                ))}
             </div>
 
             {/* Min/Max Labels */}
