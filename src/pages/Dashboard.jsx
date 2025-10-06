@@ -1,6 +1,5 @@
 import { mockDashboardData } from "../api/mockData";
 import SummaryCard from "../components/SummaryCard";
-import PortfolioChart from "../components/PortfolioChart";
 import HoldingsList from "../components/HoldingsList";
 
 export default function Dashboard() {
