@@ -1,5 +1,6 @@
+
 import { NavLink } from "react-router-dom";
-import { Home, List, User } from "lucide-react";
+import { Home, List, User, FileText } from "lucide-react";
 
 export default function Navbar() {
   return (
@@ -9,11 +10,14 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center py-3">
             <NavLink to="/" className="flex items-center gap-2">
-              <svg width="30px" height="30px" viewBox="0 -0.5 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" > <defs> <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{ stopColor: "#1E3A8A" }} />
-                <stop offset="50%" style={{ stopColor: "#3B82F6" }} />
-                <stop offset="100%" style={{ stopColor: "#60A5FA" }} />
-              </linearGradient> </defs>
+              <svg width="30px" height="30px" viewBox="0 -0.5 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: "#1E3A8A" }} />
+                    <stop offset="50%" style={{ stopColor: "#3B82F6" }} />
+                    <stop offset="100%" style={{ stopColor: "#60A5FA" }} />
+                  </linearGradient>
+                </defs>
                 <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                   <g transform="translate(1.000000, 0.000000)" fill="url(#blueGradient)">
                     <path d="M0,14.977 C0,15.514 0.275,15.951 0.615,15.951 L14.385,15.951 C14.725,15.951 15,15.514 15,14.977 L15,14.977 C15,14.438 14.725,14.001 14.385,14.001 L0.615,14.001 C0.275,14.001 0,14.438 0,14.977 L0,14.977 L0,14.977 Z"></path>
@@ -26,42 +30,104 @@ export default function Navbar() {
               </svg>
               <span className="text-xl font-bold text-gray-900">AutoTrader</span>
             </NavLink>
+
+            {/* Desktop Navigation Links */}
+            <div className="flex items-center gap-1">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 ${isActive
+                    ? "bg-blue-50 text-blue-600"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  }`
+                }
+              >
+                <Home size={18} />
+                <span>Home</span>
+              </NavLink>
+              <NavLink
+                to="/shortlist"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 ${isActive
+                    ? "bg-blue-50 text-blue-600"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  }`
+                }
+              >
+                <List size={18} />
+                <span>Watchlist</span>
+              </NavLink>
+              <NavLink
+                to="/logs"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 ${isActive
+                    ? "bg-blue-50 text-blue-600"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  }`
+                }
+              >
+                <FileText size={18} />
+                <span>Logs</span>
+              </NavLink>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 ${isActive
+                    ? "bg-blue-50 text-blue-600"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  }`
+                }
+              >
+                <User size={18} />
+                <span>Profile</span>
+              </NavLink>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Bottom Navbar for Mobile */}
       <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-20">
-        <div className="flex justify-around py-2">
+        <div className="grid grid-cols-4 py-2">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `flex flex-col items-center text-xs ${isActive ? "text-blue-600" : "text-gray-500"
+              `flex flex-col items-center text-xs py-1 transition-colors ${isActive ? "text-blue-600" : "text-gray-500"
               }`
             }
           >
             <Home size={22} />
-            Home
+            <span className="mt-1">Home</span>
           </NavLink>
           <NavLink
             to="/shortlist"
             className={({ isActive }) =>
-              `flex flex-col items-center text-xs ${isActive ? "text-blue-600" : "text-gray-500"
+              `flex flex-col items-center text-xs py-1 transition-colors ${isActive ? "text-blue-600" : "text-gray-500"
               }`
             }
           >
             <List size={22} />
-            Watchlist
+            <span className="mt-1">Watchlist</span>
+          </NavLink>
+          <NavLink
+            to="/logs"
+            className={({ isActive }) =>
+              `flex flex-col items-center text-xs py-1 transition-colors ${isActive ? "text-blue-600" : "text-gray-500"
+              }`
+            }
+          >
+            <FileText size={22} />
+            <span className="mt-1">Logs</span>
           </NavLink>
           <NavLink
             to="/profile"
             className={({ isActive }) =>
-              `flex flex-col items-center text-xs ${isActive ? "text-blue-600" : "text-gray-500"
+              `flex flex-col items-center text-xs py-1 transition-colors ${isActive ? "text-blue-600" : "text-gray-500"
               }`
             }
           >
             <User size={22} />
-            Profile
+            <span className="mt-1">Profile</span>
           </NavLink>
         </div>
       </nav>
