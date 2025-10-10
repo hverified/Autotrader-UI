@@ -167,7 +167,7 @@ export default function Logs() {
 
                 {/* Stats Cards */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
-                    <div className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-md p-4 sm:p-5 border border-slate-200/60 hover:border-slate-300 transition-all duration-200">
+                    <div className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-md hover:shadow-md p-4 sm:p-5 border border-slate-200/60 hover:border-slate-300 transition-all duration-200">
                         <div className="flex items-center justify-between mb-2">
                             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
                                 Total
@@ -178,7 +178,7 @@ export default function Logs() {
                             {Object.values(logStats).reduce((a, b) => a + b, 0) || 0}
                         </p>
                     </div>
-                    <div className="group bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-sm hover:shadow-md p-4 sm:p-5 border border-blue-100 hover:border-blue-200 transition-all duration-200">
+                    <div className="group bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-md hover:shadow-md p-4 sm:p-5 border border-blue-50 hover:border-blue-200 transition-all duration-200">
                         <div className="flex items-center justify-between mb-2">
                             <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
                                 Info
@@ -189,7 +189,7 @@ export default function Logs() {
                             {logStats.INFO || 0}
                         </p>
                     </div>
-                    <div className="group bg-gradient-to-br from-red-50 to-white rounded-2xl shadow-sm hover:shadow-md p-4 sm:p-5 border border-red-100 hover:border-red-200 transition-all duration-200">
+                    <div className="group bg-gradient-to-br from-red-50 to-white rounded-2xl shadow-md hover:shadow-md p-4 sm:p-5 border border-red-50 hover:border-red-200 transition-all duration-200">
                         <div className="flex items-center justify-between mb-2">
                             <p className="text-xs font-semibold text-red-600 uppercase tracking-wider">
                                 Errors
@@ -200,7 +200,7 @@ export default function Logs() {
                             {logStats.ERROR || 0}
                         </p>
                     </div>
-                    <div className="group bg-gradient-to-br from-amber-50 to-white rounded-2xl shadow-sm hover:shadow-md p-4 sm:p-5 border border-amber-100 hover:border-amber-200 transition-all duration-200">
+                    <div className="group bg-gradient-to-br from-amber-50 to-white rounded-2xl shadow-md hover:shadow-md p-4 sm:p-5 border border-amber-50 hover:border-amber-200 transition-all duration-200">
                         <div className="flex items-center justify-between mb-2">
                             <p className="text-xs font-semibold text-amber-600 uppercase tracking-wider">
                                 Warnings

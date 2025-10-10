@@ -152,7 +152,7 @@ export default function Shortlist() {
         {/* Tabs & Stock List */}
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-slate-200/60 overflow-hidden transition-all duration-300 hover:shadow-2xl">
           <div className="px-2 sm:px-4 pt-3 pb-1 bg-gradient-to-r from-slate-50 via-blue-50/40 to-slate-50">
-            <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+            <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} data={data} />
           </div>
 
           {loading ? (
