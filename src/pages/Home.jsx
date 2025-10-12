@@ -19,7 +19,6 @@ import {
 import { Link } from "react-router-dom";
 
 export default function Home() {
-    // Dummy data
     const portfolioStats = {
         totalValue: 125450.75,
         todayPL: 2345.50,
@@ -52,6 +51,7 @@ export default function Home() {
     return (
         <div className="pb-16 sm:pb-0 p-4 sm:p-6 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 min-h-screen">
             <div className="max-w-7xl mx-auto">
+
                 {/* Header */}
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-2">
@@ -70,63 +70,72 @@ export default function Home() {
 
                 {/* Portfolio Overview Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    {/* Total Portfolio Value */}
-                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg shadow-blue-500/30 p-5 text-white">
+                    {/* Card Template */}
+                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-4">
                         <div className="flex items-center justify-between mb-3">
-                            <p className="text-sm font-medium text-blue-100">Portfolio Value</p>
-                            <DollarSign size={20} className="text-blue-200" />
+                            <p className="text-sm font-semibold text-slate-600">Portfolio Value</p>
+                            <div className="p-2 rounded-lg bg-blue-50">
+                                <DollarSign size={20} className="text-blue-600" />
+                            </div>
                         </div>
-                        <p className="text-3xl font-bold mb-1">₹{portfolioStats.totalValue.toLocaleString()}</p>
-                        <div className="flex items-center gap-1 text-sm">
-                            <ArrowUpRight size={16} />
-                            <span className="font-semibold">{portfolioStats.totalPLPercent}%</span>
-                            <span className="text-blue-100">all time</span>
-                        </div>
+                        <p className="text-2xl font-bold text-slate-900 mb-1">₹{portfolioStats.totalValue.toLocaleString()}</p>
+                        <p className="text-sm text-slate-500 flex items-center gap-1">
+                            <ArrowUpRight size={14} className="text-green-600" />
+                            <span className="text-green-600 font-semibold">{portfolioStats.totalPLPercent}%</span>
+                            <span>overall</span>
+                        </p>
                     </div>
 
-                    {/* Today's P/L */}
-                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-5">
+                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-4">
                         <div className="flex items-center justify-between mb-3">
                             <p className="text-sm font-semibold text-slate-600">Today's P/L</p>
                             {portfolioStats.todayPL >= 0 ? (
-                                <TrendingUp size={20} className="text-green-500" />
+                                <div className="p-2 rounded-lg bg-green-50">
+                                    <TrendingUp size={20} className="text-green-600" />
+                                </div>
                             ) : (
-                                <TrendingDown size={20} className="text-red-500" />
+                                <div className="p-2 rounded-lg bg-red-50">
+                                    <TrendingDown size={20} className="text-red-600" />
+                                </div>
                             )}
                         </div>
-                        <p className={`text-3xl font-bold mb-1 ${portfolioStats.todayPL >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                        <p className={`text-2xl font-bold mb-1 ${portfolioStats.todayPL >= 0 ? "text-green-600" : "text-red-600"}`}>
                             ₹{Math.abs(portfolioStats.todayPL).toLocaleString()}
                         </p>
-                        <div className="flex items-center gap-1 text-sm">
+                        <p className="text-sm text-slate-500 flex items-center gap-1">
                             {portfolioStats.todayPL >= 0 ? (
-                                <ArrowUpRight size={16} className="text-green-600" />
+                                <ArrowUpRight size={14} className="text-green-600" />
                             ) : (
-                                <ArrowDownRight size={16} className="text-red-600" />
+                                <ArrowDownRight size={14} className="text-red-600" />
                             )}
-                            <span className={`font-semibold ${portfolioStats.todayPL >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            <span className={`font-semibold ${portfolioStats.todayPL >= 0 ? "text-green-600" : "text-red-600"}`}>
                                 {portfolioStats.todayPLPercent}%
                             </span>
-                            <span className="text-slate-500">today</span>
-                        </div>
+                            <span>today</span>
+                        </p>
                     </div>
 
-                    {/* Active Positions */}
-                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-5">
+                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-4">
                         <div className="flex items-center justify-between mb-3">
                             <p className="text-sm font-semibold text-slate-600">Active Positions</p>
-                            <Activity size={20} className="text-purple-500" />
+                            <div className="p-2 rounded-lg bg-purple-50">
+                                <Activity size={20} className="text-purple-600" />
+                            </div>
                         </div>
-                        <p className="text-3xl font-bold text-slate-900 mb-1">{portfolioStats.activePositions}</p>
-                        <p className="text-sm text-slate-500">of {portfolioStats.totalStocks} total stocks</p>
+                        <p className="text-2xl font-bold text-slate-900 mb-1">
+                            {portfolioStats.activePositions}
+                        </p>
+                        <p className="text-sm text-slate-500">of {portfolioStats.totalStocks} total</p>
                     </div>
 
-                    {/* Total P/L */}
-                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-5">
+                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-4">
                         <div className="flex items-center justify-between mb-3">
                             <p className="text-sm font-semibold text-slate-600">Total Profit</p>
-                            <TrendingUp size={20} className="text-emerald-500" />
+                            <div className="p-2 rounded-lg bg-emerald-50">
+                                <TrendingUp size={20} className="text-emerald-600" />
+                            </div>
                         </div>
-                        <p className="text-3xl font-bold text-emerald-600 mb-1">
+                        <p className="text-2xl font-bold text-emerald-600 mb-1">
                             ₹{portfolioStats.totalPL.toLocaleString()}
                         </p>
                         <p className="text-sm text-slate-500">+{portfolioStats.totalPLPercent}% overall</p>
@@ -136,16 +145,20 @@ export default function Home() {
                 {/* Quick Stats */}
                 <div className="grid grid-cols-3 gap-4 mb-6">
                     {quickStats.map((stat, index) => (
-                        <div key={index} className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-4">
+                        <div
+                            key={index}
+                            className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-4"
+                        >
                             <div className={`inline-flex p-2 rounded-xl ${stat.bg} mb-2`}>
                                 <stat.icon size={20} className={stat.color} />
                             </div>
-                            <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
+                            <p className="text-xl font-bold text-slate-900">{stat.value}</p>
                             <p className="text-xs text-slate-500 font-medium">{stat.label}</p>
                         </div>
                     ))}
                 </div>
 
+                {/* Bottom Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Recent Trades */}
                     <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/60 p-6">
@@ -157,10 +170,13 @@ export default function Home() {
                         </div>
                         <div className="space-y-3">
                             {recentTrades.map((trade, index) => (
-                                <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
+                                <div
+                                    key={index}
+                                    className="flex items-center justify-between p-3 bg-slate-50/70 rounded-xl hover:bg-slate-100 transition"
+                                >
                                     <div className="flex items-center gap-3">
-                                        <div className={`p-2 rounded-lg ${trade.type === 'buy' ? 'bg-green-100' : 'bg-red-100'}`}>
-                                            {trade.type === 'buy' ? (
+                                        <div className={`p-2 rounded-lg ${trade.type === "buy" ? "bg-green-100" : "bg-red-100"}`}>
+                                            {trade.type === "buy" ? (
                                                 <ArrowUpRight size={16} className="text-green-600" />
                                             ) : (
                                                 <ArrowDownRight size={16} className="text-red-600" />
@@ -188,16 +204,17 @@ export default function Home() {
                         </div>
                         <div className="space-y-3">
                             {topPerformers.map((stock, index) => (
-                                <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100">
+                                <div
+                                    key={index}
+                                    className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100"
+                                >
                                     <div>
                                         <p className="font-bold text-slate-900">{stock.symbol}</p>
                                         <p className="text-sm text-slate-600">₹{stock.price}</p>
                                     </div>
-                                    <div className="text-right">
-                                        <div className="flex items-center gap-1 text-green-600 font-bold">
-                                            <ArrowUpRight size={18} />
-                                            <span>{stock.change}%</span>
-                                        </div>
+                                    <div className="text-right text-green-600 font-bold flex items-center gap-1">
+                                        <ArrowUpRight size={18} />
+                                        <span>{stock.change}%</span>
                                     </div>
                                 </div>
                             ))}
@@ -214,4 +231,3 @@ export default function Home() {
         </div>
     );
 }
-

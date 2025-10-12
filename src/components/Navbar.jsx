@@ -1,8 +1,17 @@
-
+// src/components/Navbar.jsx
 import { NavLink } from "react-router-dom";
-import { Home, List, User, FileText } from "lucide-react";
+import { Home, List, User, FileText, LogOut } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
+import { toast } from "react-hot-toast";
 
 export default function Navbar() {
+  const { logout, user } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Logged out successfully!");
+  };
+
   return (
     <>
       {/* Top Navbar for Desktop */}
@@ -81,6 +90,21 @@ export default function Navbar() {
                 <User size={18} />
                 <span>Profile</span>
               </NavLink>
+
+              {/* User Info & Logout */}
+              <div className="flex items-center gap-2 ml-4 pl-4 border-l border-gray-200">
+                <span className="text-sm text-gray-600">
+                  {user?.username}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-all duration-200 flex items-center gap-2"
+                  title="Logout"
+                >
+                  <LogOut size={18} />
+                  <span>Logout</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -88,7 +112,7 @@ export default function Navbar() {
 
       {/* Bottom Navbar for Mobile */}
       <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-20">
-        <div className="grid grid-cols-4 py-2">
+        <div className="grid grid-cols-5 py-2">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -129,6 +153,13 @@ export default function Navbar() {
             <User size={22} />
             <span className="mt-1">Profile</span>
           </NavLink>
+          <button
+            onClick={handleLogout}
+            className="flex flex-col items-center text-xs py-1 text-red-500 transition-colors"
+          >
+            <LogOut size={22} />
+            <span className="mt-1">Logout</span>
+          </button>
         </div>
       </nav>
     </>

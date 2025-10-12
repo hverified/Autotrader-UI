@@ -127,21 +127,6 @@ export default function Shortlist() {
               Track and manage your trading portfolio
             </p>
           </div>
-          <button
-            onClick={() => setConfirmVisible(true)}
-            className="hidden sm:flex group px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 bg-size-200 bg-pos-0 hover:bg-pos-100 rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 items-center gap-2.5 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
-            disabled={refreshing}
-            style={{
-              backgroundSize: '200% 100%',
-              backgroundPosition: refreshing ? '100% 0' : '0 0'
-            }}
-          >
-            <RefreshCw
-              size={18}
-              className={`${refreshing ? "animate-spin" : "group-hover:rotate-180"} transition-transform duration-500`}
-            />
-            {refreshing ? "Updating..." : "Run Shortlist Job"}
-          </button>
         </div>
 
         {/* Nifty Card */}
@@ -207,20 +192,6 @@ export default function Shortlist() {
           )}
         </div>
       </div>
-
-      {/* Floating Action Button - Mobile */}
-      <button
-        onClick={() => setConfirmVisible(true)}
-        disabled={refreshing}
-        className="sm:hidden fixed bottom-20 right-5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white p-4 rounded-2xl shadow-xl shadow-blue-500/40 hover:shadow-2xl hover:shadow-blue-500/50 active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {refreshing ? (
-          <RefreshCw size={24} className="animate-spin" />
-        ) : (
-          <Play size={24} />
-        )}
-      </button>
-
       {confirmVisible && (
         <ConfirmModal
           title="Run Shortlist Job?"
